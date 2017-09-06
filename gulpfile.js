@@ -26,20 +26,11 @@ gulp.task('sass', function () {
 
 
 // ////////////////////////////////////////////
-// Copy Drupal files to /dist
+// Copy php files to /dist
 // ///////////////////////////////////////////
-gulp.task('copyDrupal', ['clean:drupalfiles'], function(){
-    gulp.src(['src/**/*.yml', 'src/**/*.theme'])
+gulp.task('copyPhp', ['clean:phpfiles'], function(){
+    gulp.src('src/**/*.php')
         .pipe(gulp.dest('dist/'));
-});
-
-
-// ////////////////////////////////////////////
-// Copy twig files to dist/templates
-// ///////////////////////////////////////////
-gulp.task('copyTwig', ['clean:twigfiles'], function(){
-    gulp.src('src/templates/**/*.twig')
-        .pipe(gulp.dest('dist/templates'));
 });
 
 
@@ -71,8 +62,8 @@ gulp.task('imageMin', function(){
 // Clean up dist folder
 // //////////////////////////////////////////////////
 // Clean the related Drupal files
-gulp.task('clean:drupalfiles', function () {
-    return gulp.src(['dist/**/*.yml', 'dist/**/*.theme'], {read: false})
+gulp.task('clean:phpfiles', function () {
+    return gulp.src('dist/**/*.php', {read: false})
         .pipe(clean());
 });
 
@@ -83,25 +74,12 @@ gulp.task('clean:jsfiles', function () {
 });
 
 
-// Clean the templates folder
-gulp.task('clean:twigfiles', function () {
-    return gulp.src('dist/templates', {read: false})
-        .pipe(clean());
-});
-
 // Clean the images folder
 gulp.task('clean:imagefiles', function () {
     return gulp.src('dist/images', {read: false})
         .pipe(clean());
 });
 
-// Create dist folder
-//gulp.task('dist', ['clean'], function () {
-//    // the base option sets the relative root for the set of files,
-//    // preserving the folder structure
-//    gulp.src(filesToMove, {base: './'})
-//        .pipe(gulp.dest('dist'));
-//});
 
 // Clean the whole dist folder
 gulp.task('clean', function () {
@@ -113,14 +91,13 @@ gulp.task('clean', function () {
 // Watch Task
 // ///////////////////////////////////////////////////
 gulp.task('watch', function () {
-    gulp.watch('src/sass/**/*.{scss,sass}', ['sass']);
+    gulp.watch('src/**/*.{scss,sass}', ['sass']);
     gulp.watch('src/images/*', ['imageMin']);
     gulp.watch('src/js/*.js', ['minify']);
-    gulp.watch('src/templates/**/*.twig', ['copyTwig']);
-    gulp.watch(['src/**/*.yml', 'src/**/*.theme'], ['copyDrupal']);
+    gulp.watch('src/**/*.php', ['copyPhp']);
 });
 
 // ///////////////////////////////////////////////////
 // Default Task
 // ///////////////////////////////////////////////////
-gulp.task('default', ['sass', 'copyTwig', 'minify', 'copyDrupal', 'imageMin', 'watch']);
+gulp.task('default', ['sass', 'minify', 'imageMin', 'copyPhp', 'watch']);

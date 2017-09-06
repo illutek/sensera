@@ -21,6 +21,7 @@ gulp.task('sass', function () {
         .pipe(plumber())
         .pipe(sass({outputStyle: 'compressed'}).on('error',sass.logError))
         .pipe(sourcemaps.write())
+        .pipe(gulp.dest('src/css'))
         .pipe(gulp.dest('dist/css'));
 });
 
@@ -32,6 +33,16 @@ gulp.task('copyPhp', ['clean:phpfiles'], function(){
     gulp.src('src/**/*.php')
         .pipe(gulp.dest('dist/'));
 });
+
+// ////////////////////////////////////////////
+// Copy bower css to /dist
+// ///////////////////////////////////////////
+gulp.task('copyBower', function(){
+    gulp.src('src/bower_components/bootstrap/dist/css/bootstrap-grid.css')
+        .pipe(gulp.dest('dist/bower_components/bootstrap/dist/css/'));
+});
+
+
 
 
 // ////////////////////////////////////////////
@@ -100,4 +111,4 @@ gulp.task('watch', function () {
 // ///////////////////////////////////////////////////
 // Default Task
 // ///////////////////////////////////////////////////
-gulp.task('default', ['sass', 'minify', 'imageMin', 'copyPhp', 'watch']);
+gulp.task('default', ['sass', 'minify', 'imageMin', 'copyPhp', 'copyBower', 'watch']);

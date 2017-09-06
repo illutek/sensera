@@ -1,5 +1,5 @@
 {
-  "name": "Sensera",
+  "name": "sensera",
   "authors": [
     "Vandenborne Stefan <stefan@illutek.be>"
   ],
@@ -13,5 +13,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "bootstrap": "v4.0.0-beta"
+  }
 }

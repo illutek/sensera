@@ -1,0 +1,17 @@
+{
+  "name": "Sensera",
+  "authors": [
+    "Vandenborne Stefan <stefan@illutek.be>"
+  ],
+  "description": "underconstruction page",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

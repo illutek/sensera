@@ -1,0 +1,10 @@
+dea/
+
+# Build Systems #
+########################
+node_modules
+bower_components
+docker-compose.yml
+css/
+build/
+dist/

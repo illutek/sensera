@@ -9,6 +9,24 @@
   <title>Document</title>
 </head>
 <body>
-<div class="container"></div>
+<div class="container">
+  <header class="header">
+    <img src="images/sencera.png" alt="sensera">
+  </header>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="content">
+        <h1>Sensera</h1>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form">
+        <form action="">
+          <h3>Ons contacteren</h3>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -60,12 +60,7 @@ gulp.task('minify', ['clean:jsfiles'], function() {
 // /////////////////////////////////////////////
 gulp.task('imageMin', function(){
     gulp.src('src/images/*')
-        .pipe(imagemin([
-            imagemin.gifsicle({interlaced: true}),
-            imagemin.jpegtran({progressive: true}),
-            imagemin.optipng({optimizationLevel: 5}),
-            imagemin.svgo({plugins: [{removeViewBox: true}]})
-        ]))
+        .pipe(imagemin())
         .pipe(gulp.dest('dist/images'))
 });
 
@@ -103,7 +98,7 @@ gulp.task('clean', function () {
 // ///////////////////////////////////////////////////
 gulp.task('watch', function () {
     gulp.watch('src/**/*.{scss,sass}', ['sass']);
-    gulp.watch('src/images/*', ['imageMin']);
+    gulp.watch('src/images/**/*', ['imageMin']);
     gulp.watch('src/js/*.js', ['minify']);
     gulp.watch('src/**/*.php', ['copyPhp']);
 });

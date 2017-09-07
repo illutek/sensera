@@ -1,3 +1,31 @@
+<?php
+if (isset($_POST['sendfeedback'])) {
+    $name = $_POST['naam'];
+    $email = $_POST['email'];
+    $message = $_POST['bericht'];
+    $messageContent = "Naam afzender: $name \nBericht: \n$message";
+
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $privatekey = "yourkey";
+
+    $response = file_get_contents($url . "?secret=" . $privatekey . "&response=" . $_POST['g-recaptcha-response'] . "&remoteip" . $_SERVER['REMOTE_ADDR']);
+
+    $data = json_decode($response);
+
+    if (isset($data->success) AND $data->success == true) {
+// send email and redirect
+        $to = "info@lasertronix.be";
+        $subject = "Contact van de website Lasertronix";
+        $headers = "From:" . $email . "\r\n";
+        mail($to, $subject, $messageContent, $headers);
+        header("Location: http://www.lasertronix.be/index.php?sendFeedback=true");
+    } else {
+
+        header("Location: http://www.lasertronix.be/index.php?CaptchaFail=true");
+
+    }
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,7 +74,7 @@
               <textarea required="required" class="form-control" name="bericht"
               ><?PHP if (isset($_POST['message'])) echo htmlspecialchars($_POST['message']); ?></textarea>
             </div>
-            <div class="g-recaptcha" data-sitekey="6Lf7viYUAAAAAAezZLrUn9wA0GMpzpxGUYz7xsEX"></div>
+            <div class="g-recaptcha" data-sitekey="sitekey"></div>
             <input class="btn btn-default" type="submit" name="sendfeedback" value="Verzenden">
           </form>
         </div>

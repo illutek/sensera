@@ -8,3 +8,4 @@ docker-compose.yml
 css/
 build/
 dist/
+src/secretKey.inc.php

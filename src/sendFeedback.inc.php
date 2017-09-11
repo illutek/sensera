@@ -20,7 +20,7 @@
 
         if (isset($_GET['CaptchaFail'])) { ?>
 
-            <div class="col-md-12 successfully-sent fall">
+            <div class="col-md-12 successfully-sent failed">
                 <p>Captcha fout. Probeer eens opnieuw.</p>
             </div>
 
